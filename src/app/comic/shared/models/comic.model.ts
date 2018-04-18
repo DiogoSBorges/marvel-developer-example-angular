@@ -5,6 +5,7 @@ export default class Comic {
     price: number;
 
     constructor() {
+        this.id = "";
         this.title = "";
         this.description = "";
         this.price = 0;
