@@ -1,10 +1,10 @@
 {
-  "name": "angular-basic-sctructure",
+  "name": "marvel-developer-example-angular",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --o",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
