@@ -2,10 +2,13 @@ import { Component, OnInit } from '@angular/core';
 
 import { MarvelService } from './../../marvel.service';
 
+import {ItemComicComponent} from './../item-comic/item-comic.component';
+
 @Component({
     selector: 'list-comic',
     templateUrl: './list-comic.component.html',
     styleUrls: ['./list-comic.component.css'],
+    entryComponents:[ItemComicComponent]
 })
 
 export class ListComicComponent implements OnInit {
