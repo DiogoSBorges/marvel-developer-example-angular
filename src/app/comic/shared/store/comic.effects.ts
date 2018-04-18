@@ -8,20 +8,26 @@ import { of } from 'rxjs/observable/of';
 import * as ComicAtions from './comic.action';
 
 import { HttpClient } from '@angular/common/http';
+import { MarvelService } from './../../../marvel.service';
 
 @Injectable()
 export class ComicEffects {
     constructor(
-        private http: HttpClient,
-        private actions$: Actions
+        private actions$: Actions,
+        private marvelService: MarvelService
     ) { }
 
     /*
     @Effect()
-    GetTodos$: Observable<Action> = this.actions$.
-        ofType<ComicAtions.GetComics>(ComicAtions.GET_COMICS)
-            return new ComicAtions.GetComicsSuccess([]);
-        })
-        .catch(() => of(new ComicAtions.GetComicsError()))
-*/
+    GetComics$: Observable<Action> = this.actions$.
+      ofType<ComicAtions.GetComics>(ComicAtions.GET_COMICS)
+      .mergeMap(action =>
+        this.marvelService.getComics()
+          .map((data: Response) => {
+  
+            console.log(data);
+            return new ComicAtions.GetTodosSuccess(data["data"]["docs"] as TodoState[]);
+          })
+          .catch(() => of(new TodoActions.GetTodoError()))
+      );*/
 }

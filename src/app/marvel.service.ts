@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 
-import {Md5} from 'ts-md5'
+import { Md5 } from 'ts-md5'
 
 import Comic from './comic/shared/models/comic.model';
 
-const httpOption = {
-    headers: new HttpHeaders({ 'Content-type': 'application/json' })
-}
 
 //Api Config
 const ENDPOINT = "http://gateway.marvel.com";
@@ -24,7 +22,7 @@ export class MarvelService {
 
     constructor(private http: HttpClient) { }
 
-    public getComics(optionsOrigin = {}): Observable<Comic[]> {
+    getComics(optionsOrigin = {}): Observable<any> {
         const defaultOptions = { page: 1, limit: 20, title: null, characters: null }
         const options = Object.assign(defaultOptions, optionsOrigin);
 
@@ -40,10 +38,10 @@ export class MarvelService {
             url = url.concat(`&characters=${options.characters}`)
         }
 
-        this.http.get(url);
-
-        return null ;
-        //return null;
+        //return null
+        return this.http.get<any>(url);
+        // .map(res => res)
+        // .catch(err => console.error(err))
     }
 
 }

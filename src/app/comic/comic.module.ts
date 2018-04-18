@@ -9,13 +9,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import {MarvelService} from './../marvel.service';
 
+import { CommonModule } from '@angular/common';  
+
 @NgModule({
     imports: [
-        ComicRoutingModule
+        ComicRoutingModule,
+        CommonModule
     ],
     declarations: [
         ListComicComponent
     ],
-    providers:[MarvelService]
+    providers:[MarvelService, HttpClient]
 })
 export class ComicModule { }

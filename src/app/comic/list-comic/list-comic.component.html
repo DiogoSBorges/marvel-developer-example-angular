@@ -1,1 +1,13 @@
-<h1>Welcome List Comics</h1>
+<h1>Welcome List Comics {{teste}}  {{isLoading}}</h1>
+
+<span *ngIf="isLoading">Loading ... </span> 
+
+<div *ngIf="!isLoading">
+    <ul>
+        <li *ngFor="let comic of listComic"> 
+          {{ comic.title }}
+        </li>
+       </ul>
+</div> 
+
+
