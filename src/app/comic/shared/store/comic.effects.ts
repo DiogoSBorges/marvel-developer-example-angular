@@ -1,33 +1,50 @@
-import { Injectable } from '@angular/core';
-
-import { Observable } from 'rxjs/Observable';
-import { Action } from '@ngrx/store';
-import { Actions, Effect } from '@ngrx/effects';
-import { of } from 'rxjs/observable/of';
+import {Effect, Actions} from "@ngrx/effects";
+import {Injectable} from "@angular/core";
+import {Observable} from "rxjs";
 
 import * as ComicAtions from './comic.action';
 
 import { HttpClient } from '@angular/common/http';
-import { MarvelService } from './../../../marvel.service';
+import { MarvelService } from './../../../shared/marvel.service';
 
 @Injectable()
 export class ComicEffects {
-    constructor(
-        private actions$: Actions,
-        private marvelService: MarvelService
-    ) { }
+  constructor(
+    private actions$: Actions,
+    private marvelService: MarvelService
+  ) { }
 
-    /*
-    @Effect()
-    GetComics$: Observable<Action> = this.actions$.
-      ofType<ComicAtions.GetComics>(ComicAtions.GET_COMICS)
-      .mergeMap(action =>
-        this.marvelService.getComics()
-          .map((data: Response) => {
-  
-            console.log(data);
-            return new ComicAtions.GetTodosSuccess(data["data"]["docs"] as TodoState[]);
-          })
-          .catch(() => of(new TodoActions.GetTodoError()))
-      );*/
-}
+
+  @Effect() update$ = this.actions$
+    .ofType('SUPER_SIMPLE_EFFECT')
+    .switchMap( () =>
+      Observable.of({type: "SUPER_SIMPLE_EFFECT_HAS_FINISHED"})
+    );
+
+/*
+  @Effect()
+  getComics$: Observable<Action> = this.actions$.
+    ofType(ComicAtions.GET_COMICS)
+    .switchMap(action =>
+      this.marvelService.getComics()
+        .subscribe(response => {
+          return new ComicAtions.GetComicsSuccess([]);
+        })
+    );
+
+*/
+
+
+/* .mergeMap(action =>
+      this.marvelService.getComics()
+      .subscribe(response => {
+
+
+        console.log(response);
+        return new ComicAtions.GetComicsSuccess([]);
+
+
+      })
+        //.catch(() => of(new ComicAtions.GetComicsError()))
+    );*/
+  }

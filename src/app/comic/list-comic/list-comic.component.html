@@ -1,7 +1,12 @@
-<h1>Welcome List Comics {{teste}} {{isLoading}}</h1>
+<h1>Welcome List Comics {{teste}} {{comicListState$.loading}}</h1>
 
-<span *ngIf="isLoading">Loading ... </span>
 
-<div *ngIf="!isLoading">
-  <item-comic *ngFor="let comic of listComic" [comic]='comic'></item-comic>
+<div *ngIf='comicListState$ | async as comicListState'>
+
+  <span *ngIf="comicListState.loading">Loading ... </span>
+
+  <div *ngIf="!comicListState.loading">
+    <item-comic *ngFor="let comic of comicListState.comics" [comic]='comic'></item-comic>
+  </div>
+
 </div>

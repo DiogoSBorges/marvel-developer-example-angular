@@ -8,19 +8,24 @@ import { ItemComicComponent } from './item-comic/item-comic.component';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import {MarvelService} from './../marvel.service';
+import { MarvelService } from './../shared/marvel.service';
 
-import { CommonModule } from '@angular/common';  
+import { StoreModule } from '@ngrx/store'
+
+import { CommonModule } from '@angular/common';
+
+import * as ComicReducer from './shared/store/comic.reducer';
 
 @NgModule({
     imports: [
         ComicRoutingModule,
-        CommonModule
+        CommonModule,
+        StoreModule.forRoot({comics: ComicReducer.ComicReducer})
     ],
     declarations: [
         ListComicComponent,
         ItemComicComponent
     ],
-    providers:[MarvelService, HttpClient]
+    providers: [MarvelService]
 })
 export class ComicModule { }

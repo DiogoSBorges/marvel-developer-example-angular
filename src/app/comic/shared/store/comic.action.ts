@@ -1,5 +1,5 @@
 import { ComicState } from './comic.state';
-import  Comic  from './../models/comic.model';
+import Comic from './../models/comic.model';
 
 import { Action } from '@ngrx/store';
 

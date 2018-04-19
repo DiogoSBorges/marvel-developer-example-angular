@@ -1,35 +1,55 @@
 import { Component, OnInit } from '@angular/core';
 
-import { MarvelService } from './../../marvel.service';
+import { MarvelService } from '../../shared/marvel.service';
 
-import {ItemComicComponent} from './../item-comic/item-comic.component';
+import { ItemComicComponent } from './../item-comic/item-comic.component';
+
+import { Store } from '@ngrx/store';
+
+import { ComicListState, ComicState } from './../shared/store/comic.state';
+
+import * as ComicActions from './../shared/store/comic.action'
+
+import { Observable } from "rxjs";
+
 
 @Component({
     selector: 'list-comic',
     templateUrl: './list-comic.component.html',
     styleUrls: ['./list-comic.component.css'],
-    entryComponents:[ItemComicComponent]
+    entryComponents: [ItemComicComponent]
 })
-
 export class ListComicComponent implements OnInit {
-    teste = 'Teste 1 2 3';
-    isLoading = false;
-    listComic = [];
 
-    constructor(private marvelService: MarvelService) {
+    constructor(private store: Store<ComicListState>, private marvelService: MarvelService) { }
+
+
+    comicListState$//: Observable<ComicState[]>;
+
+
+
+
+    ngOnInit() {
+        this.getComics({});
+        this.comicListState$ = this.store.select(state => state.comics);
 
     }
-    ngOnInit() {
-        this.isLoading = true;
+
+    getComics(params: any) {
+
+        this.store.dispatch({
+            type: ComicActions.GET_COMICS
+        })
+
         this.marvelService
             .getComics()
             .subscribe(response => {
                 console.log(response);
-                this.listComic = response.data.results
-                this.isLoading = false;
-            });
-
-        // .catch(err => console.error(err))
+                this.store.dispatch({
+                    type: ComicActions.GET_COMICS_SUCCESS,
+                    payload: response.data.results
+                })
+            })
     }
 
 }

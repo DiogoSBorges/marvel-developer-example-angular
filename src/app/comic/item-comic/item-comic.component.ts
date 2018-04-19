@@ -5,6 +5,7 @@ import {Component} from '@angular/core';
     templateUrl: './item-comic.component.html',
     styleUrls: ['./item-comic.component.css'],
     inputs:['comic']
+    //outputs: ['myevent']
 })
 export class ItemComicComponent {
 

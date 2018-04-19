@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { Md5 } from 'ts-md5'
 
-import Comic from './comic/shared/models/comic.model';
+import Comic from './../comic/shared/models/comic.model';
 
 
 //Api Config
