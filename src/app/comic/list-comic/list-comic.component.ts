@@ -21,18 +21,17 @@ import { Observable } from "rxjs";
 })
 export class ListComicComponent implements OnInit {
 
-    constructor(private store: Store<ComicListState>, private marvelService: MarvelService) { }
+    comicListState$: Observable<ComicState[]>;
 
-
-    comicListState$//: Observable<ComicState[]>;
-
-
-
-
+    constructor(private store: Store<any>, private marvelService: MarvelService) { }
+    
     ngOnInit() {
         this.getComics({});
-        this.comicListState$ = this.store.select(state => state.comics);
 
+        this.comicListState$ = this.store.select(state => state.comicsState);
+        /* this.comicListState$.subscribe(res =>{
+             console.log(res);
+        })*/
     }
 
     getComics(params: any) {

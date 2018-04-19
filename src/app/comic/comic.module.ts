@@ -20,7 +20,7 @@ import * as ComicReducer from './shared/store/comic.reducer';
     imports: [
         ComicRoutingModule,
         CommonModule,
-        StoreModule.forRoot({comics: ComicReducer.ComicReducer})
+        StoreModule.forRoot({comicsState: ComicReducer.ComicReducer})
     ],
     declarations: [
         ListComicComponent,
