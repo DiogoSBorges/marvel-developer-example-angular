@@ -36,7 +36,8 @@ export class ListComicComponent implements OnInit {
 
     getComics(params: any) {
         this.store.dispatch({
-            type: ComicActions.GET_COMICS
+            type: ComicActions.GET_COMICS,
+            ...params
         })
 
         /*this.marvelService
