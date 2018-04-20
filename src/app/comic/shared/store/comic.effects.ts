@@ -1,6 +1,10 @@
-import {Effect, Actions} from "@ngrx/effects";
-import {Injectable} from "@angular/core";
-import {Observable} from "rxjs";
+import { Effect, Actions } from "@ngrx/effects";
+import { Action } from '@ngrx/store';
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/map';
 
 import * as ComicAtions from './comic.action';
 
@@ -10,41 +14,20 @@ import { MarvelService } from './../../../shared/marvel.service';
 @Injectable()
 export class ComicEffects {
   constructor(
-    private actions$: Actions,
+    private action$: Actions,
     private marvelService: MarvelService
   ) { }
 
-
-  @Effect() update$ = this.actions$
-    .ofType('SUPER_SIMPLE_EFFECT')
-    .switchMap( () =>
-      Observable.of({type: "SUPER_SIMPLE_EFFECT_HAS_FINISHED"})
-    );
-
-/*
   @Effect()
-  getComics$: Observable<Action> = this.actions$.
-    ofType(ComicAtions.GET_COMICS)
-    .switchMap(action =>
-      this.marvelService.getComics()
-        .subscribe(response => {
-          return new ComicAtions.GetComicsSuccess([]);
-        })
-    );
-
-*/
-
-
-/* .mergeMap(action =>
-      this.marvelService.getComics()
-      .subscribe(response => {
-
-
-        console.log(response);
-        return new ComicAtions.GetComicsSuccess([]);
-
-
+  getComics$: Observable<Action> = this.action$.
+    ofType<ComicAtions.GetComics>(ComicAtions.GET_COMICS)
+    .switchMap(() => {
+      return this.marvelService.getComics().map(response => {
+        if (response.code == 200) {
+          return new ComicAtions.GetComicsSuccess(response.data.results);
+        } else {
+          return new ComicAtions.GetComicsError();
+        }
       })
-        //.catch(() => of(new ComicAtions.GetComicsError()))
-    );*/
-  }
+    });
+}
