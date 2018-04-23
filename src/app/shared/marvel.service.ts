@@ -38,10 +38,37 @@ export class MarvelService {
             url = url.concat(`&characters=${options.characters}`)
         }
 
-        //return null
         return this.http.get<any>(url);
-        // .map(res => res)
-        // .catch(err => console.error(err))
     }
+
+    getComicById(id): Observable<any> {
+        let url = `${ENDPOINT}/v1/public/comics/${id}?ts=1&apikey=${PUBLIC_KEY}&hash=${HASH}`;
+        return this.http.get<any>(url);
+    }
+
+    getCharacters(optionsOrigin = {}): Observable<any> {
+        const defaultOptions = { page: 1, limit: 20, name: null, comics: null }
+        const options = Object.assign(defaultOptions, optionsOrigin);
+
+        const offset = options.page == 1 ? 0 : (options.page - 1) * options.limit;
+
+        let url = `${ENDPOINT}/v1/public/characters?ts=1&apikey=${PUBLIC_KEY}&hash=${HASH}&limit=${options.limit}&offset=${offset}`;
+
+        if (options.name) {
+            url = url.concat(`&nameStartsWith=${options.name}`)
+        }
+
+        if (options.comics) {
+            url = url.concat(`&comics=${options.comics}`)
+        }
+
+        return this.http.get<any>(url);
+    }
+
+    getCharacterById(id): Observable<any> {
+        let url = `${ENDPOINT}/v1/public/characters/${id}?ts=1&apikey=${PUBLIC_KEY}&hash=${HASH}`;
+        return this.http.get<any>(url);
+    }
+
 
 }
