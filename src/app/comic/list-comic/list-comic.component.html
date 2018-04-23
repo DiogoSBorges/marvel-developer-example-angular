@@ -1,12 +1,26 @@
-<h1>Welcome List Comics {{teste}} {{comicListState$.loading}}</h1>
+<div class="container">
+  <div class='col-sm-12 text-center'>
+    <div *ngIf='comicListState$ | async as comicListState'>
+
+      <span *ngIf="comicListState.loading">
+        <br>
+        <h3>Loading ... </h3>
+      </span>
 
 
-<div *ngIf='comicListState$ | async as comicListState'>
+      <div *ngIf="!comicListState.loading">
+        <h1>Welcome List Comics</h1>
 
-  <span *ngIf="comicListState.loading">Loading ... </span>
+        <div class="input-group">
+          <input #title type="text" class="form-control" id="title" placeholder="Title" aria-label="Title">
+          <div class="input-group-append">
+            <button type="button" (click)='searchComics(title.value)' class="btn btn-primary">Search</button>
+            <button type="button" (click)='reloadList();title.value=""' class="btn btn-secondary">Reset</button>
+          </div>
+        </div>
+        <item-comic *ngFor="let comic of comicListState.comics" [comic]='comic'></item-comic>
+      </div>
+    </div>
 
-  <div *ngIf="!comicListState.loading">
-    <item-comic *ngFor="let comic of comicListState.comics" [comic]='comic'></item-comic>
   </div>
-
 </div>

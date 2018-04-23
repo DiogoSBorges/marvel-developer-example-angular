@@ -34,6 +34,20 @@ export class ListComicComponent implements OnInit {
         })*/
     }
 
+    searchComics(title:string){
+        if(title){
+            this.getComics({title:title})
+        }else{
+            alert('Preencha o Campo')
+            return;
+        }
+        
+    }
+
+    reloadList(){
+        this.getComics({});
+    }
+
     getComics(params: any) {
         this.store.dispatch({
             type: ComicActions.GET_COMICS,

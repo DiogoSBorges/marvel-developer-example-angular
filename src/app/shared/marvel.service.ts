@@ -26,8 +26,6 @@ export class MarvelService {
         const defaultOptions = { page: 1, limit: 20, title: null, characters: null }
         const options = Object.assign(defaultOptions, optionsOrigin);
 
-        console.log(options)
-
         const offset = options.page == 1 ? 0 : (options.page - 1) * options.limit;
 
         let url = `${ENDPOINT}/v1/public/comics?ts=1&apikey=${PUBLIC_KEY}&hash=${HASH}&limit=${options.limit}&offset=${offset}`;
