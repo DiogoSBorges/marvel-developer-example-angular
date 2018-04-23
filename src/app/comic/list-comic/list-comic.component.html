@@ -1,24 +1,26 @@
-<div *ngIf='comicListState$ | async as comicListState'>
+<div class='container'>
+    <div *ngIf='comicListState$ | async as comicListState'>
 
-  <span *ngIf="comicListState.loading" class="text-center">
-    <h3>Loading ... </h3>
-  </span>
-
-  <div class='col-sm-12 text-center'>
-
-    <div *ngIf="!comicListState.loading">
-      <br>
-      <h1>Welcome List Comics</h1>
-
-      <div class="input-group">
-        <input [(ngModel)]="title" type="text" class="form-control" id="title" placeholder="Title" aria-label="Title">
-        <div class="input-group-append">
-          <button type="button" (click)='searchComics(title)' class="btn btn-primary">Search</button>
-          <button type="button" (click)='reloadList();title=""' class="btn btn-secondary">Reset</button>
+        <span *ngIf="comicListState.loading" class="text-center">
+          <h3>Loading ... </h3>
+        </span>
+      
+        <div class='col-sm-12 text-center'>
+      
+          <div *ngIf="!comicListState.loading">
+            <br>
+            <h1>Welcome List Comics</h1>
+      
+            <div class="input-group">
+              <input [(ngModel)]="title" type="text" class="form-control" id="title" placeholder="Title" aria-label="Title">
+              <div class="input-group-append">
+                <button type="button" (click)='searchComics(title)' class="btn btn-primary">Search</button>
+                <button type="button" (click)='reloadList();title=""' class="btn btn-warning">Reset</button>
+              </div>
+            </div>
+            <br>
+            <item-comic *ngFor="let comic of comicListState.comics" [comic]='comic'></item-comic>
+          </div>
         </div>
       </div>
-      <br>
-      <item-comic *ngFor="let comic of comicListState.comics" [comic]='comic'></item-comic>
-    </div>
-  </div>
 </div>
