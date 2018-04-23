@@ -22,6 +22,7 @@ import { Observable } from "rxjs";
 export class ListComicComponent implements OnInit {
 
     comicListState$//: Observable<ComicState[]>;
+    title = "";
 
     constructor(private store: Store<any>, private marvelService: MarvelService) { }
     
@@ -53,16 +54,6 @@ export class ListComicComponent implements OnInit {
             type: ComicActions.GET_COMICS,
             ...params
         })
-
-        /*this.marvelService
-            .getComics(params)
-            .subscribe(response => {
-                console.log(response);
-                this.store.dispatch({
-                    type: ComicActions.GET_COMICS_SUCCESS,
-                    payload: response.data.results
-                })
-            })*/
     }
 
 }
