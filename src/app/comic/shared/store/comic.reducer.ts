@@ -16,6 +16,7 @@ const defaultComicState: ComicState[] = [
 const defaultState: ComicListState = {
     comics: defaultComicState,
     loading: false,
+    error:false,
     pending: 0
 }
 
@@ -38,6 +39,15 @@ export function ComicReducer(state = defaultState, action: Action) {
                     ...action.payload,
                     defaultComicState[0]
                 ],
+                loading:false,
+                error:true
+            }
+        }
+
+        case ComicActions.GET_COMICS_ERROR: {
+            return {
+                ...state,
+                error:true,
                 loading:false
             }
         }

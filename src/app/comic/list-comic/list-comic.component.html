@@ -4,6 +4,9 @@
         <span *ngIf="comicListState.loading" class="text-center">
           <h3>Loading ... </h3>
         </span>
+        <span *ngIf="comicListState.error" class="text-center">
+          <h3>Ocorreu um Erro ao tentar conectar na API =/ </h3>
+        </span>
       
         <div class='col-sm-12 text-center'>
       
@@ -19,7 +22,9 @@
               </div>
             </div>
             <br>
-            <item-comic *ngFor="let comic of comicListState.comics" [comic]='comic'></item-comic>
+            <div class='col-sm-12'> 
+                <item-comic *ngFor="let comic of comicListState.comics" [comic]='comic'></item-comic>
+            </div>
           </div>
         </div>
       </div>

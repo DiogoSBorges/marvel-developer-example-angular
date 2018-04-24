@@ -1,5 +1,7 @@
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
 import { Effect, Actions } from "@ngrx/effects";
 import { Action } from '@ngrx/store';
@@ -28,6 +30,8 @@ export class ComicEffects {
         } else {
           return new ComicAtions.GetComicsError();
         }
+      }).catch((err)=>{
+        return Observable.of(new ComicAtions.GetComicsError())
       })
-    });
+    })
 }

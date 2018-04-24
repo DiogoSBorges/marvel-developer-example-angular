@@ -35,6 +35,7 @@ export const initializeComicState = () => {
 export interface ComicListState{
     comics: ComicState[];
     loading: boolean;
+    error: boolean;
     pending: number;
 }
 
