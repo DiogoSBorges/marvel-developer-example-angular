@@ -5,6 +5,7 @@ import * as ComicActions from './comic.action';
 
 export type Action = ComicActions.All;
 
+/*
 const defaultComicState: ComicState[] = [
     {
         ...Comic.generateMockComic(),
@@ -12,9 +13,10 @@ const defaultComicState: ComicState[] = [
     }
 
 ]
+*/
 
 const defaultState: ComicListState = {
-    comics: defaultComicState,
+    comics: [],
     loading: false,
     error:false,
     pending: 0
@@ -36,11 +38,10 @@ export function ComicReducer(state = defaultState, action: Action) {
             return {
                 ...state,
                 comics:[
-                    ...action.payload,
-                    defaultComicState[0]
+                    ...action.payload
                 ],
                 loading:false,
-                error:true
+                error:false
             }
         }
 

@@ -1,31 +1,31 @@
 <div class='container'>
-    <div *ngIf='comicListState$ | async as comicListState'>
+  <div *ngIf='comicListState$ | async as comicListState'>
 
-        <span *ngIf="comicListState.loading" class="text-center">
-          <h3>Loading ... </h3>
-        </span>
-        <span *ngIf="comicListState.error" class="text-center">
-          <h3>Ocorreu um Erro ao tentar conectar na API =/ </h3>
-        </span>
-      
-        <div class='col-sm-12 text-center'>
-      
-          <div *ngIf="!comicListState.loading">
-            <br>
-            <h1>Welcome List Comics</h1>
-      
-            <div class="input-group">
-              <input [(ngModel)]="title" type="text" class="form-control" id="title" placeholder="Title" aria-label="Title">
-              <div class="input-group-append">
-                <button type="button" (click)='searchComics(title)' class="btn btn-primary">Search</button>
-                <button type="button" (click)='reloadList();title=""' class="btn btn-warning">Reset</button>
-              </div>
-            </div>
-            <br>
-            <div class='col-sm-12'> 
-                <item-comic *ngFor="let comic of comicListState.comics" [comic]='comic'></item-comic>
-            </div>
+    <span *ngIf="comicListState.loading" class="text-center">
+      <img class="img-fluid" src='https://vignette.wikia.nocookie.net/epicrapbattlesofhistory/images/4/49/Pool.gif/revision/latest?cb=20130824235053'>
+    </span>
+    <span *ngIf="comicListState.error" class="text-center">
+      <h3>Ocorreu um Erro ao tentar conectar na API =/ </h3>
+    </span>
+
+    <div class='col-sm-12 text-center'>
+
+      <div *ngIf="!comicListState.loading && !comicListState.error">
+        <br>
+        <h1>List Comics</h1>
+
+        <div class="input-group">
+          <input [(ngModel)]="title" type="text" class="form-control" id="title" placeholder="Title" aria-label="Title">
+          <div class="input-group-append">
+            <button type="button" (click)='searchComics(title)' class="btn btn-primary">Search</button>
+            <button type="button" (click)='reloadList();title=""' class="btn btn-warning">Reset</button>
           </div>
         </div>
+        <br>
+        <div class='row'>
+          <item-comic class='col-sm-12 col-md-6 col-lg-4 col-xl-3' *ngFor="let comic of comicListState.comics" [comic]='comic'></item-comic>
+        </div>
       </div>
+    </div>
+  </div>
 </div>
