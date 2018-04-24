@@ -6,7 +6,7 @@ import { ItemComicComponent } from './../item-comic/item-comic.component';
 
 import { Store } from '@ngrx/store';
 
-import { ComicListState, ComicState } from './../shared/store/comic.state';
+import { ComicState } from './../shared/store/comic.state';
 
 import * as ComicActions from './../shared/store/comic.action'
 
@@ -21,7 +21,7 @@ import { Observable } from "rxjs";
 })
 export class ListComicComponent implements OnInit {
 
-    comicListState$//: Observable<ComicState[]>;
+    comicListState$: Observable<ComicState>;
     title = "";
 
     constructor(private store: Store<any>, private marvelService: MarvelService) { }

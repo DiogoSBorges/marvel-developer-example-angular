@@ -1,20 +1,34 @@
-import  Comic  from './../models/comic.model';
+import Comic from './../models/comic.model';
 
-export class ComicState extends Comic {
-    loading: boolean;
-
-    editable: boolean;
-    edited: boolean;
-    editing: boolean;
-
-    selected: boolean;
-    refreshing: boolean;
-
-    create: boolean;
-
-    error: boolean;
+export class ComicState {
+    listComic: {
+        loading: boolean,
+        error: boolean,
+        comics: any[]
+    }
+    detailComic: {
+        loading: boolean,
+        error: boolean,
+        comic: any
+    }
 }
 
+export const initialize = () =>{
+    return{
+        listComic: {
+            loading: false,
+            error: false,
+            comics: []
+        },
+        detailComic: {
+            loading: false,
+            error: false,
+            comic: null
+        }
+    }
+} 
+
+/*
 export const initializeComicState = () => {
     return {
         loading: false,
@@ -32,16 +46,17 @@ export const initializeComicState = () => {
     }
 }
 
-export interface ComicListState{
+export interface ComicListState {
     comics: ComicState[];
     loading: boolean;
     error: boolean;
     pending: number;
 }
 
-export const  intializeComicListState = function(){
+export const intializeComicListState = function () {
     return {
         loading: false,
         pending: 0,
     }
 }
+*/
