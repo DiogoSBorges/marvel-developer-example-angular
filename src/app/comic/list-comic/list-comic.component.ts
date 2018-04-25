@@ -4,6 +4,8 @@ import { MarvelService } from '../../shared/marvel.service';
 
 import { ItemComicComponent } from './../item-comic/item-comic.component';
 
+import {PaginationControlsComponent} from 'ngx-pagination';
+
 import { Store } from '@ngrx/store';
 
 import { ComicState } from './../shared/store/comic.state';
@@ -54,6 +56,10 @@ export class ListComicComponent implements OnInit {
             type: ComicActions.GET_COMICS,
             ...params
         })
+    }
+
+    pageChanged(event){
+        console.log(event)
     }
 
 }

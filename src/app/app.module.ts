@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 
+import {NgxPaginationModule} from 'ngx-pagination';
+
 import {HttpClientModule} from '@angular/common/http';
 
 import { AppRouting } from './app-routing';
@@ -16,6 +18,7 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
+    NgxPaginationModule,
     FormsModule,
     HttpClientModule,
     AppRouting

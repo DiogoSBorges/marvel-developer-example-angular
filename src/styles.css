@@ -29,8 +29,9 @@ a:hover {
 html,
 body {
   height: 100%;
-  background-color: #333 ;
-  background-repeat: no-repeat;
+  background: url('http://x.annihil.us/u/prod/marvel/i/mg/8/b0/537ba702ad5b3.gif') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  background-size: cover;
 }
 
 body {
@@ -180,6 +181,7 @@ body {
   transition: transform 0.4s, opacity 0.1s;
   transition: transform 0.4s, opacity 0.1s, -webkit-transform 0.4s;
 }
+
 
 
  

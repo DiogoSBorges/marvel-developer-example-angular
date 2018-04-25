@@ -15,6 +15,8 @@ import { MarvelService } from './../shared/marvel.service';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
+import {NgxPaginationModule} from 'ngx-pagination';
+
 import { CommonModule } from '@angular/common';
 import { FormsModule }   from '@angular/forms';
 
@@ -26,6 +28,7 @@ import { ComicEffects } from './shared/store/comic.effects';
     imports: [
         ComicRoutingModule,
         CommonModule,
+        NgxPaginationModule,
         FormsModule,
         StoreModule.forRoot({ comicsState: ComicReducer.ComicReducer }),
         EffectsModule.forRoot([ComicEffects])
