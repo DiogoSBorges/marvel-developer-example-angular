@@ -4,7 +4,7 @@ import { MarvelService } from '../../shared/marvel.service';
 
 import { ItemComicComponent } from './../item-comic/item-comic.component';
 
-import {PaginationControlsComponent} from 'ngx-pagination';
+import { PaginationControlsComponent } from 'ngx-pagination';
 
 import { Store } from '@ngrx/store';
 
@@ -25,29 +25,33 @@ export class ListComicComponent implements OnInit {
 
     comicListState$: Observable<ComicState>;
     title = "";
+    page = 1;
 
     constructor(private store: Store<any>, private marvelService: MarvelService) { }
-    
+
     ngOnInit() {
         this.getComics({});
 
         this.comicListState$ = this.store.select(state => state.comicsState);
-         /*this.comicListState$.subscribe(res =>{
-             console.log(res);
-        })*/
+        /*this.comicListState$.subscribe(res =>{
+            console.log(res);
+       })*/
     }
 
-    searchComics(title:string){
-        if(title){
-            this.getComics({title:title})
-        }else{
+    searchComics() {
+        if (this.title) {
+            this.page = 1;
+            this.getComics({ title: this.title })
+        } else {
             alert('Preencha o Campo')
             return;
         }
-        
+
     }
 
-    reloadList(){
+    reloadList() {
+        this.title = "";
+        this.page = 1;
         this.getComics({});
     }
 
@@ -58,8 +62,9 @@ export class ListComicComponent implements OnInit {
         })
     }
 
-    pageChanged(event){
-        console.log(event)
+    pageChanged(event) {
+        this.page = event;
+        this.getComics({ page: event, title: this.title });
     }
 
 }

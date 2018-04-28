@@ -24,7 +24,7 @@ export function ComicReducer(state = defaultState, action: Action) {
     switch (action.type) {
 
         case ComicActions.GET_COMICS: {
-            
+
             return {
                 ...state,
                 listComic: {
@@ -38,8 +38,9 @@ export function ComicReducer(state = defaultState, action: Action) {
                 ...state,
                 listComic: {
                     comics: [
-                        ...action.payload
+                        ...action.payload.listComics
                     ],
+                    totalItens: action.payload.totalItens,
                     loading: false,
                     error: false
                 }
@@ -51,7 +52,8 @@ export function ComicReducer(state = defaultState, action: Action) {
                 ...state,
                 listComic: {
                     error: true,
-                    loading: false
+                    loading: false,
+                    totalItens: 0
                 }
             }
         }

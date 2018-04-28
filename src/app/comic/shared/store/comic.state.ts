@@ -4,7 +4,8 @@ export class ComicState {
     listComic: {
         loading: boolean,
         error: boolean,
-        comics: any[]
+        comics: any[],
+        totalItens: number
     }
     detailComic: {
         loading: boolean,
@@ -13,12 +14,13 @@ export class ComicState {
     }
 }
 
-export const initialize = () =>{
-    return{
+export const initialize = () => {
+    return {
         listComic: {
             loading: false,
             error: false,
-            comics: []
+            comics: [],
+            totalItens: 0
         },
         detailComic: {
             loading: false,
@@ -26,7 +28,7 @@ export const initialize = () =>{
             comic: null
         }
     }
-} 
+}
 
 /*
 export const initializeComicState = () => {

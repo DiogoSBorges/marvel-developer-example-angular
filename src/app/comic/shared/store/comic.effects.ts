@@ -26,11 +26,11 @@ export class ComicEffects {
     .switchMap((param) => {
       return this.marvelService.getComics(param).map(response => {
         if (response.code == 200) {
-          return new ComicAtions.GetComicsSuccess(response.data.results);
+          return new ComicAtions.GetComicsSuccess({ listComics: response.data.results, totalItens: response.data.total });
         } else {
           return new ComicAtions.GetComicsError();
         }
-      }).catch((err)=>{
+      }).catch((err) => {
         return Observable.of(new ComicAtions.GetComicsError())
       })
     })

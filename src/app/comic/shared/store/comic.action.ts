@@ -19,7 +19,7 @@ export class GetComics implements Action {
 export class GetComicsSuccess implements Action {
     readonly type = GET_COMICS_SUCCESS;
 
-    constructor(public payload: ComicState[]) { };
+    constructor(public payload: any) { };
 }
 
 export class GetComicsError implements Action {

@@ -16,7 +16,7 @@
         <div class="input-group">
           <input [(ngModel)]="title" type="text" class="form-control" id="title" placeholder="Title" aria-label="Title">
           <div class="input-group-append">
-            <button type="button" (click)='searchComics(title)' title="Search" class="btn btn-primary btn-mybtn" style="width: 42px;height: 38px;">
+            <button type="button" (click)='searchComics()' title="Search" class="btn btn-primary btn-mybtn" style="width: 42px;height: 38px;">
               <span class="oi oi-magnifying-glass"></span>
             </button>
             <button type="button" (click)='reloadList();title=""' title="Reload List" class="btn btn-warning btn-mybtn" style="width: 42px;height: 38px;color:'white'">
@@ -28,9 +28,9 @@
         <div class='row'>
           <item-comic class='col-sm-12 col-md-6 col-lg-4 col-xl-3' *ngFor="let comic of comicListState.listComic.comics | paginate: { id: 'pgListComic',
           itemsPerPage: 20,
-          currentPage: 2,
-          totalItems: 1000 }" [comic]='comic'></item-comic>
-          <pagination-controls (pageChange)="pageChanged($event)" id="pgListComic"></pagination-controls>
+          currentPage: page,
+          totalItems: comicListState.listComic.totalItens }" [comic]='comic'></item-comic>
+          <pagination-controls class="col-sm-12 my-pagination" (pageChange)="pageChanged($event)" id="pgListComic"></pagination-controls>
         </div>
       </div>
     </div>
