@@ -9,6 +9,9 @@ const routes: Routes = [
     },
     {
         path: 'comic', loadChildren: 'app/comic/comic.module#ComicModule'
+    },
+    {
+        path: 'character', loadChildren: 'app/character/character.module#CharacterModule'
     }
 ]
 

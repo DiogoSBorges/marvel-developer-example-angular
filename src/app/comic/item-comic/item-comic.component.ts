@@ -17,7 +17,7 @@ export class ItemComicComponent {
 
 
     getUrlImage() {
-        if(this.comic.thumbnail){
+        if (this.comic.thumbnail) {
             if (this.comic.thumbnail.path.indexOf('image_not_available') != -1 && this.comic.images.length > 0) {
                 for (let index in this.comic.images) {
                     if (this.comic.images[index].path.indexOf('image_not_available') != -1) {
@@ -29,6 +29,14 @@ export class ItemComicComponent {
             return this.comic.thumbnail.path + "/portrait_fantastic." + this.comic.thumbnail.extension
         }
         return '';
+    }
+
+    getPriceComic() {
+        let price = 0;
+        if (this.comic.prices.length > 0) {
+            price = this.comic.prices[0].price
+        }
+        return price.toFixed(2);
     }
 
 }
