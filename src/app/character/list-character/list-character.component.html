@@ -1,1 +1,38 @@
-<h1>HIIIIIII</h1>
+<div class='container'>
+    <div *ngIf='characterState$ | async as characterState'>
+      <span *ngIf="characterState.listCharacter.loading" class="text-center">
+        <img class="img-fluid" src='https://vignette.wikia.nocookie.net/epicrapbattlesofhistory/images/4/49/Pool.gif/revision/latest?cb=20130824235053'>
+      </span>
+      <span *ngIf="characterState.listCharacter.error" class="text-center">
+        <h3>Ocorreu um Erro ao tentar conectar na API =/ </h3>
+      </span>
+  
+      <div class='col-sm-12 text-center'>
+  
+        <div *ngIf="!characterState.listCharacter.loading && !characterState.listCharacter.error">
+          <br>
+          <h1>List Characters</h1>
+  
+          <div class="input-group">
+            <input [(ngModel)]="name" type="text" class="form-control" id="name" placeholder="Name" aria-label="Title">
+            <div class="input-group-append">
+              <button type="button" (click)='searchCharacters()' title="Search" class="btn btn-primary btn-mybtn" style="width: 42px;height: 38px;">
+                <span class="oi oi-magnifying-glass"></span>
+              </button>
+              <button type="button" (click)='reloadList();' title="Reload List" class="btn btn-warning btn-mybtn" style="width: 42px;height: 38px;color:'white'">
+                <span class="oi oi-loop-circular"></span>
+              </button>
+            </div>
+          </div>
+          <br>
+          <div class='row'>
+            <item-character class='col-sm-12 col-md-6 col-lg-4 col-xl-3' *ngFor="let character of characterState.listCharacter.characters | paginate: { id: 'pgListCharacter',
+            itemsPerPage: 20,
+            currentPage: page,
+            totalItems: characterState.listCharacter.totalItens }" [character]='character'></item-character>
+            <pagination-controls class="col-sm-12 my-pagination" (pageChange)="pageChanged($event)" id="pgListCharacter"></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

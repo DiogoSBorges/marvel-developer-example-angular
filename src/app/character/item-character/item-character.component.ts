@@ -9,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class ItemCharacterComponent {
 
+    public character;
+
+    getUrlImage() {
+        return this.character.thumbnail.path + "/portrait_fantastic." + this.character.thumbnail.extension
+    }
 }

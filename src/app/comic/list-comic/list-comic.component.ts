@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { MarvelService } from '../../shared/marvel.service';
-
 import { ItemComicComponent } from './../item-comic/item-comic.component';
 
 import { PaginationControlsComponent } from 'ngx-pagination';
@@ -27,7 +25,7 @@ export class ListComicComponent implements OnInit {
     title = "";
     page = 1;
 
-    constructor(private store: Store<any>, private marvelService: MarvelService) { }
+    constructor(private store: Store<any>) { }
 
     ngOnInit() {
         this.getComics({});
@@ -43,10 +41,8 @@ export class ListComicComponent implements OnInit {
             this.page = 1;
             this.getComics({ title: this.title })
         } else {
-            alert('Preencha o Campo')
-            return;
+            alert('Preencha o Campo');
         }
-
     }
 
     reloadList() {

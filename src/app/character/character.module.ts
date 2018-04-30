@@ -15,14 +15,14 @@ import { MarvelService } from './../shared/marvel.service';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { CommonModule } from '@angular/common';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
-//import * as ComicReducer from './shared/store/comic.reducer';
+import * as CharacterReducer from './shared/store/character.reducer';
 
-//import { ComicEffects } from './shared/store/comic.effects';
+import { CharacterEffects } from './shared/store/character.effects';
 
 @NgModule({
     imports: [
@@ -30,8 +30,8 @@ import { FormsModule }   from '@angular/forms';
         CommonModule,
         NgxPaginationModule,
         FormsModule,
-        //StoreModule.forRoot({ comicsState: ComicReducer.ComicReducer }),
-        //EffectsModule.forRoot([ComicEffects])
+        StoreModule.forRoot({ characterState: CharacterReducer.CharacterReducer }),
+        EffectsModule.forRoot([CharacterEffects])
     ],
     declarations: [
         ListCharacterComponent,

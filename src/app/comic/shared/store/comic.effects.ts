@@ -31,7 +31,7 @@ export class ComicEffects {
           return new ComicAtions.GetComicsError();
         }
       }).catch((err) => {
-        return Observable.of(new ComicAtions.GetComicsError())
+        return Observable.of(new ComicAtions.GetComicsError());
       })
     })
 }
